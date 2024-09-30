@@ -1,20 +1,31 @@
 import React from 'react';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { Link } from 'react-router-dom';
-
+import { Link, Outlet } from 'react-router-dom';
+import { Layout, Menu } from 'antd';
+const { Content, Sider } = Layout;
 
 const SellerDashboard = () => {
     return (
-        <div className='bg-gray-400 h-screen w-screen flex gap-x-96 relative '>
-            <div className='h-screen bg-sky-950 w-52 py-10 fixed'>
-                <ul className=' h-32 w-40 mx-auto'>
-                    <li className='font-bold  py-2 text-white bg-slate-600 hover:cursor-pointer '><HomeRoundedIcon className='mx-4' /><Link to='/producthome'>Home</Link></li>
-                    <li className='font-bold  py-2 text-white bg-slate-600 my-3 hover: cursor-pointer'><AddCircleIcon className='mx-4' /><Link to='/newproduct'>Add Product</Link></li>
-                </ul>
-            </div>
-        </div>
-    )
-}
+        <Layout >
+            <Sider className='h-screen'>
+                <div className="demo-logo-vertical" />
+                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className='py-7 font-bold text-md  '>
+                    <Menu.Item key="1">
+                        <Link to="/productspage"><HomeRoundedIcon className='mx-2' />Products</Link>
+                    </Menu.Item>
+                    <Menu.Item key="2">
+                        <Link to="/newproduct"><AddCircleIcon className='mx-2' />Add Product</Link>
+                    </Menu.Item>
+                </Menu>
+            </Sider>
+            <Layout>    
+                <Content className=' m-1 mr-6 ml-6 rounded-md flex  flex-col h-screen'>
+                    <Outlet />
+                </Content>
+            </Layout>
+        </Layout>
+    );
+};
 
 export default SellerDashboard;

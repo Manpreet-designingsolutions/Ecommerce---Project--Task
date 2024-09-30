@@ -1,31 +1,23 @@
 
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const useProductStore = create(
-    (set) => (
-        {
-            product: {
-                'title': '',
-                'description': '',
-                'category': '',
-                'price': '',
-                'quantity': '',
-                'file': ''
-            },
-            setProduct: (newProduct) => set((state) => ({
-              product:{...state.product, ...newProduct}  
-            })),
-            resetProduct: () => set({
-                'title': '',
-                'description': '',
-                'category': '',
-                'price': '',
-                'quantity': '',
-                'file': ''
-            })
-        }
-        
-    )
-)
+    persist(
+        (set) => (
+            {
+                products: [],
+                setProduct: (newProduct) => set((state) => ({
+                    products: [newProduct, ...state.products]
+                })),
+
+            }
+
+        )
+    ),
+    {
+        name: 'shoppingProducts'
+    }
+);
 
 export default useProductStore;

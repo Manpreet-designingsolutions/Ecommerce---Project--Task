@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 const HomePage = () => {
     const [formData, setFormData] = useState({
-        email: '', password: '', userType: ''
+        email: '', password: ''
     })
     const navigate = useNavigate();
 
@@ -16,7 +16,6 @@ const HomePage = () => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("form data --->>>", formData);
 
 
         const adminDetails = {
@@ -43,14 +42,14 @@ const HomePage = () => {
         {
             toast.success("Login as Seller successfully");
             localStorage.setItem("sellerLoggedIn", true);
-            navigate("/seller");
+            navigate("/productspage");
             console.log("login as seller --->>>", formData);
         }
         else if (formData.email === customerDetails.customerEmail && formData.password === customerDetails.customerPassword)
         {
             toast.success('Login as customer successfully');
             localStorage.setItem("customerLoggedIn", true);
-            navigate("/customer");
+            navigate("/productlisting");
             console.log("customer form data --->>>", formData);
         }
         else {
