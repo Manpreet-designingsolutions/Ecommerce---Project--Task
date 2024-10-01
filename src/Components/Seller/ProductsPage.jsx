@@ -8,8 +8,8 @@ const ProductsPage = () => {
     <div className=' flex flex-col  items-center h-screen '>
       <table className='bg-gray-200  w-full mt-5 '>
         <thead>
-          <tr className='bg-sky-800'>
-            <th className='font-bold text-white'>Sr No.</th>
+          <tr className='bg-sky-800 '>
+            <th className='font-bold text-white '>Sr No.</th>
             <th className='font-bold text-white'>Product Name</th>
             <th className='font-bold text-white'>Description</th>
             <th className='font-bold text-white'>Category</th>
@@ -23,12 +23,12 @@ const ProductsPage = () => {
               (product, index) => {
                 return (
                   <tr key={index}>
-                    <td className='text-center font-semibold'>{index + 1}</td>
-                    <td className='text-center font-semibold'>{product.title}</td>
-                    <td className='text-center font-semibold'>{product.description}</td>
-                    <td className='text-center font-semibold'>{product.category}</td>
-                    <td className='text-center font-semibold'>{product.price}</td>
-                    <td className='text-center font-semibold'>{product.quantity}</td>
+                    <td className='text-center font-semibold p-2'>{index + 1}</td>
+                    <td className='text-left font-semibold p-2'>{product.title}</td>
+                    <td className='text-left font-semibold p-2'>{product.description}</td>
+                    <td className='text-center font-semibold p-2'>{product.category}</td>
+                    <td className='text-center font-semibold p-2'>{product.price}</td>
+                    <td className='text-center font-semibold p-2'>{product.quantity}</td>
                   </tr>
                 )
               }

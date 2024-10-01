@@ -10,6 +10,7 @@ const ProductForm = () => {
   const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
+    'id': Date.now(),
     'title': '',
     'description': '',
     'category': '',
@@ -41,9 +42,13 @@ const ProductForm = () => {
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       toast.success('Form Submitted Successfully!!');
+      console.log("form data here ---->>>", formData);
       navigate("/productspage");
+      console.log("form data here after id ---->>>", formData);
+
       setProduct(formData);
       setFormData({
+        'id': null,
         'title': '',
         'description': '',
         'category': '',
@@ -97,6 +102,10 @@ const ProductForm = () => {
               <option value="electronics">Electronics</option>
               <option value="footwear">Footwear</option>
               <option value="Grocery">Grocery</option>
+              <option value="bags">Bags</option>
+              <option value="jewellery">Jewellery</option>
+
+
             </select>
           </div>
           {
