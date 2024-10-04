@@ -7,7 +7,7 @@ const ProductsPage = () => {
   //   resetData();
   // }
   return (
-    <div className=' overflow-y-scroll h-screen'>
+    <div className=' overflow-x-auto h-screen'>
       {/* <button onClick={handleData}>reset</button> */}
       <table className='bg-gray-200 mt-5 min-w-full '>
         <thead>

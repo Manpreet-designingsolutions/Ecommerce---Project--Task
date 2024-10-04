@@ -14,7 +14,7 @@ const Cart = () => {
   return (
     <>
       <div className='h-full w-full  mt-2 flex'>
-        <div className='mt-5 flex xs:flex-col md:w-3/5 lg:px-2 xl:w-3/5 '>
+        <div className='mt-5 flex xs:flex-col md:w-3/5 flex-col gap-3 lg:px-2 xl:w-3/5 '>
         {
           cart.length > 0 && cart.map(
             (item, index) => {

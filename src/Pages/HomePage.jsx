@@ -49,7 +49,6 @@ const HomePage = () => {
         else {
             toast.error("Invalid credentials");
         }
-
     }
 
     const handleChange = (event) => {
@@ -65,29 +64,28 @@ const HomePage = () => {
         toast.success("Logout successfully!!!");
     }
 
-
     return (
         <>
             <Toaster />
             {
                 isLoggedIn ? (
-                    <div className='bg-gray-400 h-screen w-screen flex gap-x-96 '>
-                        <div className='h-screen bg-sky-950 w-52 py-10'>
-                            <ul className=' h-32 w-40 mx-auto'>
-                                <li className='font-bold  py-2 text-white bg-slate-600 hover:cursor-pointer '><AdminPanelSettingsIcon className='mx-4' />Admin</li>
-                                <li className='font-bold  py-2 text-white bg-slate-600 my-3 hover: cursor-pointer'><StorefrontIcon className='mx-4' />Seller</li>
-                                <li className='font-bold  py-2 text-white bg-slate-600 hover: cursor-pointer '><GroupAddIcon className='mx-4' />Customer</li>
+                    <div className='bg-gray-400 h-screen min-w-full flex flex-col items-center '>
+                        <div className='h-auto bg-sky-950 w-full py-10'>
+                            <ul className='flex gap-3 '>
+                                <li className='font-bold  py-2 text-white  hover:cursor-pointer '><AdminPanelSettingsIcon className='mx-4' />Admin</li>
+                                <li className='font-bold  py-2 text-white   hover: cursor-pointer'><StorefrontIcon className='mx-4' />Seller</li>
+                                <li className='font-bold  py-2 text-white  hover: cursor-pointer '><GroupAddIcon className='mx-4' />Customer</li>
                             </ul>
                         </div>
-                        <div className='h-96 bg-slate-300 mt-14 rounded-lg'>
+                        <div className=' bg-slate-300 mt-14 rounded-lg w-56 '>
                             <h1 className='text-center font-bold text-2xl mt-5'>Login</h1>
                             <p className='text-xs font-bold text-center mt-1'>Hi, Welcome Back</p>
-                            <form className='flex  flex-col mt-7' onSubmit={handleSubmit}>
+                            <form className='flex flex-col mt-7' onSubmit={handleSubmit}>
                                 <label htmlFor='email' className='text-slate-700 font-bold text-medium mx-10'>Email</label>
-                                <input type='email' placeholder='Enter your mail...' name='email' id='email' value={formData.email} onChange={handleChange} required className='mt-2 p-1 text-center  mx-10 rounded-md bg-slate-100' />
+                                <input type='email' placeholder='Enter your mail...' name='email' id='email' value={formData.email} onChange={handleChange} required className='mt-2 p-1 text-center  mx-10  rounded-md bg-slate-100' />
                                 <label htmlFor='password' className='text-slate-600 font-bold text-medium mt-3 mx-10'>Password</label>
                                 <input type='password' placeholder='Enter your password...' name='password' id='password' value={formData.password} onChange={handleChange} required className='mt-2 p-1 text-center mx-10 rounded-md bg-slate-100' />
-                                <button type='submit' className='mt-9 bg-sky-800 p-1 w-28 rounded-md mx-auto text-gray-100 font-bold'>Login</button>
+                                <button type='submit' className='mt-9 bg-sky-800 p-1 w-28 rounded-md mx-auto text-gray-100 font-bold m-3 '>Login</button>
                             </form>
                         </div>
                     </div>
@@ -102,8 +100,6 @@ const HomePage = () => {
                     </div>
                 )
             }
-
-
         </>
 
     )

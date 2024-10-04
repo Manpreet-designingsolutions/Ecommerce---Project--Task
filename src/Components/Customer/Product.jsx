@@ -11,7 +11,7 @@ const Product = ({ item }) => {
     return (
         <>
             <Toaster />
-            <div className='  xs:grid-cols-1 rounded-lg px-3 py-6 w-5/6 mx-auto sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-3 w-56   bg-gray-200 mt-5 mx-2 px-2 py-0 w-52 pb-3  xl:grid-cols-5 '>
+            <div className=' xs:grid-cols-1 rounded-lg px-3 py-6 w-5/6 mx-auto sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-3 w-56   bg-gray-200 mt-5 mx-2 px-2 py-0 w-52 pb-3  xl:grid-cols-5 hover:shadow-xl'>
                 <p className='font-bold text-lg'>{item.title.split("").slice(0, 14).join("") + "..."}</p>
                 <p className='text-xs color-gray-500'>{item.description.split("").slice(0, 51).join('') + "..."}</p>
                 <div className='h-32 bg-gray-400 w-32 mt-2 flex justify-center mx-auto'>
