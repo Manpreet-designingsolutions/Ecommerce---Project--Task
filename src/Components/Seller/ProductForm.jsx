@@ -16,6 +16,7 @@ const ProductForm = () => {
     'category': '',
     'price': '',
     'quantity': '',
+    'file': null
   });
 
   const validationSchema = Yup.object().shape(
@@ -25,28 +26,35 @@ const ProductForm = () => {
       category: Yup.string().required("Category is required"),
       price: Yup.number("Price should be number").required('Price is required').positive("Price should be positive"),
       quantity: Yup.number('Quantity should be number').required("Quantity is required").positive("Quantity should be positive"),
-      //   file: Yup.mixed().test("file size", "fil should be less than 2 mb",
-      //     value => {
-      //       if (value) {
-      //         return value.size <= 2097152
-      //       }
-      //     }
-      //   ).required('File is required')
+        file: Yup.mixed().test("file size", "fil should be less than 2 mb",
+          value => {
+            if (value) {
+              return value.size <= 2097152
+            }
+          }
+        ).required('File is required')
     }
   );
 
-  // const fileRef = useRef(null);
+  const fileRef = useRef(null);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       await validationSchema.validate(formData, { abortEarly: false });
       toast.success('Form Submitted Successfully!!');
-      console.log("form data here ---->>>", formData);
       navigate("/productspage");
-      console.log("form data here after id ---->>>", formData);
-
-      setProduct(formData);
+      console.log("form data", formData);
+      const newProduct = {
+        id: formData.id,
+        title: formData.title,
+        description: formData.description,
+        category: formData.category,
+        price: formData.price,
+        quantity: formData.quantity,
+        file: URL.createObjectURL(formData.file)
+      }
+      setProduct(newProduct);
       setFormData({
         'id': null,
         'title': '',
@@ -54,8 +62,8 @@ const ProductForm = () => {
         'category': '',
         'price': '',
         'quantity': '',
+        'file': null
       });
-      // fileRef.current.value = '';
       setErrors({});
     } catch (error) {
       const newErrors = {};
@@ -76,8 +84,8 @@ const ProductForm = () => {
 
   return (
     <>
-      <div className=' h-full  w-full flex flex-col items-center   mt-6  '>
-        <form className='flex flex-col gap-y-2  w-80 items-center rounded-lg py-5 bg-gray-200 m-7 ' onSubmit={handleSubmit}  >
+      <div className=' h-full  w-full flex flex-col items-center mt-6  '>
+        <form className='flex flex-col gap-y-2 w-80 items-center rounded-lg py-5 bg-gray-200 m-7' onSubmit={handleSubmit}  >
           <h1 className='font-bold text-lg text-sky-950' >Add Product Details</h1>
           <div className='flex flex-col items-start py-2 '>
             <label htmlFor="title" className='font-bold text-gray-700'>Product Name</label>
@@ -104,8 +112,6 @@ const ProductForm = () => {
               <option value="Grocery">Grocery</option>
               <option value="bags">Bags</option>
               <option value="jewellery">Jewellery</option>
-
-
             </select>
           </div>
           {
@@ -130,12 +136,12 @@ const ProductForm = () => {
             errors.quantity && <span className='font-bold text-sm text-red-500'>{errors.quantity}</span>
 
           }
-          {/* <label htmlFor="file" className='font-semibold text-gray-700 '>Upload image</label>
-        <input type='file' id='file' onChange={handleChange} name='file' ref={fileRef}/>
+          <label htmlFor="file" className='font-semibold text-gray-700 '>Upload image</label>
+        <input type='file' id='file' onChange={handleChange} name='file' accept='image/*' ref={fileRef}/>
         {
           errors.file && <span className='font-bold text-sm text-red-500'>{errors.file}</span>
 
-        } */}
+        }
           <button type='submit' className='bg-sky-950 w-44 p-1 rounded-md text-white font-bold mt-4'>Submit</button>
         </form>
       </div>

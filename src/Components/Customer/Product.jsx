@@ -5,19 +5,17 @@ import { toast, Toaster } from "react-hot-toast";
 const Product = ({ item }) => {
     const { addToCart } = useProductStore();
     const handleButton = () => {
-        console.log("Button is clicked");
-        console.log("calling the action from the store", item);
         addToCart(item);
         toast.success(" Item added to cart!!");
     }
     return (
         <>
             <Toaster />
-            <div className='bg-gray-200 flex flex-col  w-52 h-72  mt-5 p-3 rounded-lg '>
+            <div className='  xs:grid-cols-1 rounded-lg px-3 py-6 w-5/6 mx-auto sm:grid-cols-3 md:grid-cols-3  lg:grid-cols-3 w-56   bg-gray-200 mt-5 mx-2 px-2 py-0 w-52 pb-3  xl:grid-cols-5 '>
                 <p className='font-bold text-lg'>{item.title.split("").slice(0, 14).join("") + "..."}</p>
                 <p className='text-xs color-gray-500'>{item.description.split("").slice(0, 51).join('') + "..."}</p>
-                <div className='h-32 bg-gray-400 w-32 mt-6 flex justify-center mx-auto'>
-                    {/* <img src=" " className='h-full w-full' /> */}
+                <div className='h-32 bg-gray-400 w-32 mt-2 flex justify-center mx-auto'>
+                    <img src={item.file} className='h-full w-full' />
                 </div>
                 <div className='flex  justify-around mt-5'>
                     <div className='text-green-600 font-bold'>${item.price}</div>
@@ -27,7 +25,7 @@ const Product = ({ item }) => {
                 </div>
             </div>
         </>
-           
+
 
     )
 }

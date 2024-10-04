@@ -8,7 +8,14 @@ const { Content, Sider } = Layout;
 const SellerDashboard = () => {
     return (
         <Layout >
-            <Sider className='h-screen'>
+            <Sider breakpoint="lg"
+                collapsedWidth="0"
+                onBreakpoint={(broken) => {
+                    console.log(broken);
+                }}
+                onCollapse={(collapsed, type) => {
+                    console.log(collapsed, type);
+                }}>
                 <div className="demo-logo-vertical" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className='py-7 font-bold text-md  '>
                     <Menu.Item key="1">
@@ -19,8 +26,8 @@ const SellerDashboard = () => {
                     </Menu.Item>
                 </Menu>
             </Sider>
-            <Layout>    
-                <Content className=' m-1 mr-6 ml-6 rounded-md flex  flex-col h-screen'>
+            <Layout>
+                <Content className=' m-1 mr-6 ml-6 rounded-md flex  flex-col '>
                     <Outlet />
                 </Content>
             </Layout>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter,Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet } from 'react-router-dom';
 import ProductsPage from "./Components/Seller/ProductsPage"
 import ProductForm from "./Components/Seller/ProductForm"
 import SellerDashboard from './Components/Seller/SellerDashboard';
@@ -7,17 +7,25 @@ import HomePage from "./Pages/HomePage";
 import ProductListing from './Components/Customer/ProductListing';
 import CustomerDashboard from './Components/Customer/CustomerDashboard';
 import Cart from './Components/Customer/Cart';
+import NotFoundPage from './Pages/NotFoundPage';
 import ProtectedRoute from './Components/ProtectedRoute';
+import AdminDashboard from './Components/Admin/AdminDashboard';
+import AddForm from './Components/Admin/AddForm';
+import UserListing from './Components/Admin/UserListing';
 
 const getUserType = () => {
-   return localStorage.getItem("UserType");
+    return localStorage.getItem("UserType");
 }
 
-const userType = getUserType(); 
-console.log("getting the user type here inrouter--->>>>", userType)
+const userType = getUserType();
 export const router = createBrowserRouter([
     {
-        path: '/',
+        path: '*',
+        element: <NotFoundPage />
+    },
+
+    {
+        path: '/login',
         element: <HomePage />
     },
     {
@@ -25,8 +33,7 @@ export const router = createBrowserRouter([
         element: (
             <ProtectedRoute roles={['admin', 'seller']} userType={userType}>
                 <SellerDashboard />
-                <Outlet />
-            </ProtectedRoute>
+                </ProtectedRoute>
         ),
         children: [
             {
@@ -44,7 +51,6 @@ export const router = createBrowserRouter([
         element: (
             <ProtectedRoute roles={['admin', 'customer']} userType={userType}>
                 <CustomerDashboard />
-                <Outlet />
             </ProtectedRoute>
         ),
         children: [
@@ -56,6 +62,25 @@ export const router = createBrowserRouter([
                 path: 'cart',
                 element: <Cart />
             },
+        ]
+    },
+    {
+        path: '/',
+        element: (
+            <ProtectedRoute roles={['admin']} userType={userType}>
+                <AdminDashboard />
+            </ProtectedRoute>
+        ),
+        children: [
+            {
+                path: '/add',
+                element: <AddForm  />
+            },
+            {
+                path: '/userlisting',
+                element: <UserListing />
+            },
+            
         ]
     }
 ]);

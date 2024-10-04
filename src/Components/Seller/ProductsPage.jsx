@@ -2,14 +2,18 @@ import React from 'react';
 import useProductStore from "../../App/productStore";
 
 const ProductsPage = () => {
-  const { products } = useProductStore();
-
+  const { products, resetData } = useProductStore();
+  // const handleData = () => {
+  //   resetData();
+  // }
   return (
-    <div className=' flex flex-col  items-center h-screen '>
-      <table className='bg-gray-200  w-full mt-5 '>
+    <div className=' overflow-y-scroll h-screen'>
+      {/* <button onClick={handleData}>reset</button> */}
+      <table className='bg-gray-200 mt-5 min-w-full '>
         <thead>
-          <tr className='bg-sky-800 '>
-            <th className='font-bold text-white '>Sr No.</th>
+          <tr className='bg-sky-800'>
+            <th className='font-bold text-white'>Sr No.</th>
+            <th className='font-bold text-white'> Image</th>
             <th className='font-bold text-white'>Product Name</th>
             <th className='font-bold text-white'>Description</th>
             <th className='font-bold text-white'>Category</th>
@@ -24,6 +28,9 @@ const ProductsPage = () => {
                 return (
                   <tr key={index}>
                     <td className='text-center font-semibold p-2'>{index + 1}</td>
+                    <td className='text-center font-semibold p-2 bg-gray-200'>
+                      <img src={product.file} alt="img.." className='bg-gray-200 text-center' />
+                    </td>
                     <td className='text-left font-semibold p-2'>{product.title}</td>
                     <td className='text-left font-semibold p-2'>{product.description}</td>
                     <td className='text-center font-semibold p-2'>{product.category}</td>
@@ -38,7 +45,7 @@ const ProductsPage = () => {
       </table>
     </div>
 
-   
+
   )
 }
 
